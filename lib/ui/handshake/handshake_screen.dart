@@ -3,6 +3,8 @@ import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../localizations.dart';
+
 class HandshakeScreen extends StatefulWidget {
   @override
   _HandshakeScreenState createState() => _HandshakeScreenState();
@@ -42,7 +44,7 @@ class _HandshakeScreenState extends State<HandshakeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  "MY Code",
+                  AppLocalizations.of(context).pvhtitel,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,

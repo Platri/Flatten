@@ -1,0 +1,27 @@
+{
+	"@@last_modified": "2020-03-23T23:10:27.691638",
+	"title": "Hallo Welt",
+	"@title": {
+		"description": "Applikations Titel",
+		"type": "text",
+		"placeholders": {}
+	},
+	"hello": "Hallo",
+	"@hello": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"pvhtitel": "Mein QR-Code",
+	"@pvhtitel": {
+		"description": "Virtual Handshake Titel",
+		"type": "text",
+		"placeholders": {}
+	},
+	"createQrCodeTitleLabel": "Erstelle dauerhaften QR-Code",
+	"handshakeListTitleLabel": "Handshake Liste",
+	"healthLogbookTitleLabel": "Gesundheitstagebuch",
+	"reportsButtonLabel": "Lade meinen Test hoch",
+	"reportsTextLabel": "Wenn du positiv auf Corona getestet wurdest musst du deinen Test fotografieren und hier uploaden. Er wird dann an dein Gesundheitsamt geschickt. Leute mit denen du Kontakt hattest werden dann benachrichtigt und getestet.",
+	"reportsTitleLabel": "Meldungen",
+	"virtualHandshakeTitleLabel": "Virtueller Handshake"
+}
