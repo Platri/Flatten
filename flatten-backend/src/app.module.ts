@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { QrCodeModule } from "./qr-code/qr-code.module";
+import { HealthLogbookModule } from './health-logbook/health-logbook.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -16,7 +17,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: [],
       synchronize: true,
     }),
-    QrCodeModule
+    QrCodeModule,
+    HealthLogbookModule
   ],
   controllers: [AppController],
   providers: [AppService],
