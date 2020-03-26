@@ -13,11 +13,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 			imports: [ ConfigModule ],
 			useFactory: (configService: ConfigService) => ({
 				type: 'mysql',
-				host: configService.get<string>('MYSQL_HOST'),
-				port: configService.get<number>('MYSQL_PORT'),
-				username: configService.get<string>('MYSQL_USER'),
-				password: configService.get<string>('MYSQL_PASSWORD'),
-				database: configService.get<string>('MYSQL_DATABASE'),
+				host: configService.get<string>('TYPEORM_HOST'),
+				port: configService.get<number>('TYPEORM_PORT'),
+				username: configService.get<string>('TYPEORM_USERNAME'),
+				password: configService.get<string>('TYPEORM_PASSWORD'),
+				database: configService.get<string>('TYPEORM_DATABASE'),
 				entities: [ __dirname + '/**/*.entity{.ts,.js}' ],
 				migrations: [ __dirname + '/migration/**/*{.ts,.js}' ],
 				migrationsTableName: 'migration',
@@ -25,7 +25,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 					entitiesDir: 'src/entity',
 					migrationsDir: 'src/migration'
 				},
-				synchronize: true
+				synchronize: false
 			}),
 			inject: [ ConfigService ]
 		})
