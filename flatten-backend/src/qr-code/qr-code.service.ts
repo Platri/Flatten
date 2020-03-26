@@ -21,7 +21,8 @@ export class QrCodeService {
 
     createQRCode(): QrCodeInterface {
         const qrCode: QrCodeInterface = {
-            id: this.makeId(16)
+            id: this.makeId(16),
+            name: 'Markus'
         };
         this.fakeQR = qrCode;
         return qrCode

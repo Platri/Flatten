@@ -9,6 +9,9 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
     "incremental": true
   },
   "exclude": ["node_modules", "dist"]
