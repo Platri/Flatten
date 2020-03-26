@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {QrCodeInterface} from "./qr-code.interface";
 import {throwError} from "rxjs";
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class QrCodeService {
@@ -21,20 +22,11 @@ export class QrCodeService {
 
     createQRCode(): QrCodeInterface {
         const qrCode: QrCodeInterface = {
-            id: this.makeId(16),
+            id: uuidv4(),
             name: 'Markus'
         };
         this.fakeQR = qrCode;
         return qrCode
     }
 
-    makeId(length) {
-        let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        const charactersLength = characters.length;
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
 }
