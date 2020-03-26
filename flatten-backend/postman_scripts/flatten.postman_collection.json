@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "b91f72c4-5db2-4164-9141-5f68919c4b94",
+		"name": "flatten",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[QR-Code] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/qr-code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"qr-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[QR-Code] GetScan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Health-Logbook] GetEntry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/health-logbook/?id=11f473de-57a2-4004-a924-b05a3355a10e",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"health-logbook",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11f473de-57a2-4004-a924-b05a3355a10e"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Health-Logbook] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bodyTemperature\": 1,\r\n    \"cough\": 0,\r\n    \"headache\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/health-logbook",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"health-logbook"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
