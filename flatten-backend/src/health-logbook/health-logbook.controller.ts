@@ -1,5 +1,6 @@
-import {Controller, Get, Query} from '@nestjs/common';
+import {Body, Controller, Get, Post, Query} from '@nestjs/common';
 import {HealthLogbookService} from "@src/health-logbook/health-logbook.service";
+import {HealthLogbookEntry, HealthLogbook} from "@src/health-logbook/healthLogbook.model";
 
 @Controller('health-logbook')
 export class HealthLogbookController {
@@ -9,12 +10,17 @@ export class HealthLogbookController {
     }
 
     @Get()
-    getLogbookEntry(@Query('id') id) {
-        this.healthLogbookService.getLogbookEntry(id);
+    getLogbookEntry(@Query('id') id): HealthLogbookEntry {
+        return this.healthLogbookService.getLogbookEntry(id);
     }
 
     @Get()
-    getLogbook() {
-        this.healthLogbookService.getLogbook();
+    getLogbook(): HealthLogbook {
+        return this.healthLogbookService.getLogbook();
+    }
+
+    @Post()
+    createLogbookEntry(@Body() healthLogbookEntry: HealthLogbookEntry): HealthLogbookEntry {
+        return this.healthLogbookService.createLogbookEntry(healthLogbookEntry);
     }
 }

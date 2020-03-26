@@ -1,8 +1,8 @@
-export interface HealthLogbookList {
-    healthLogbooks: HealthLogbook[];
+export interface HealthLogbook {
+    entries?: HealthLogbookEntry[];
 }
 
-export interface HealthLogbook {
+export interface HealthLogbookEntry {
     bodyTemperature: number;
     cough: Cough;
     headache: Headache;
