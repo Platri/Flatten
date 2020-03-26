@@ -12,7 +12,7 @@ export class QrCodeController {
         /*
         QR Code ID has an min and max length of 16 characters.
          */
-        if (id.length === 16) {
+        if (id.length === 36) {
             return this.qrCodeService.getQRCode(id);
         } else {
             throw new NotFoundException('Scanned QR-Code is incorrect.');

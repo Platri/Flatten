@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { QrCodeModule } from './qr-code/qr-code.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import {HealthLogbookModule} from "@src/health-logbook/health-logbook.module";
 
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
 		QrCodeModule,
+		HealthLogbookModule,
 		TypeOrmModule.forRootAsync({
 			imports: [ ConfigModule ],
 			useFactory: (configService: ConfigService) => ({
