@@ -8,7 +8,7 @@ import 'l10n/messages_all.dart';
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
     final String name =
-    locale.countryCode == null ? locale.languageCode : locale.toString();
+        locale.countryCode == null ? locale.languageCode : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
@@ -22,7 +22,7 @@ class AppLocalizations {
   }
 
   String get title {
-    return Intl.message('Hello world App',
+    return Intl.message('Flatten',
         name: 'title', desc: 'The application title');
   }
 
@@ -51,18 +51,19 @@ class AppLocalizations {
   }
 
   String get virtualHandshakeTitleLabel {
-    return Intl.message('Virtual Handshake', name: 'virtualHandshakeTitleLabel');
+    return Intl.message('Virtual Handshake',
+        name: 'virtualHandshakeTitleLabel');
   }
-
 
   String get reportsButtonLabel {
     return Intl.message('Upload my test', name: 'reportsButtonLabel');
   }
 
   String get reportsTextLabel {
-    return Intl.message('If you have been tested positively for Corona you need to photograph your test. It will then be sent to your healthcare authority and people you had contact with will be notified and can be tested.', name: 'reportsTextLabel');
+    return Intl.message(
+        'If you have been tested positively for Corona you need to photograph your test. It will then be sent to your healthcare authority and people you had contact with will be notified and can be tested.',
+        name: 'reportsTextLabel');
   }
-
 }
 
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
