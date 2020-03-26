@@ -1,0 +1,27 @@
+{
+	"@@last_modified": "2020-03-23T23:10:27.691638",
+	"title": "Hello world App3",
+	"@title": {
+		"description": "The application title",
+		"type": "text",
+		"placeholders": {}
+	},
+	"hello": "Hello",
+	"@hello": {
+		"type": "text",
+		"placeholders": {}
+	},
+	"pvhtitel": "My QR-Code",
+	"@pvhtitel": {
+		"description": "The virtual handshake title",
+		"type": "text",
+		"placeholders": {}
+	},
+	"createQrCodeTitleLabel": "Create Permanent QR",
+	"handshakeListTitleLabel": "Handshake List",
+	"healthLogbookTitleLabel": "Health Logbook",
+	"reportsButtonLabel": "Upload my test",
+	"reportsTextLabel": "If you have been tested positively for Corona you need to photograph your test. It will then be sent to your healthcare authority and people you had contact with will be notified and can be tested.",
+	"reportsTitleLabel": "Reports",
+	"virtualHandshakeTitleLabel": "Virtual Handshake"
+}
