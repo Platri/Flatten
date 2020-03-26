@@ -34,6 +34,24 @@
 $ npm install
 ```
 
+## Start local mysql
+Starts local mysql and adminer container. You can connect http://localhost:8080 to adminer. Then you can login with username: user, password: password to flatten-db.
+
+```bash
+$ docker-compose -f docker/mysql-local.yml up -d
+```
+
+## MySQL db migration script
+Ormconfig is stored in .env file.
+
+```bash
+# create migration
+$ yarn typeorm:migration:generate -- ${migration script name}
+
+# run migration
+$ yarn typeorm:migration:run
+```
+
 ## Running the app
 
 ```bash

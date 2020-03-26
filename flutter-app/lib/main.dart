@@ -6,6 +6,9 @@ import 'package:flatten/ui/reports/reports_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
+import 'localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -15,6 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FLATTEN',
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [Locale("de")],
       theme: ThemeData(
           primaryColorDark: Color(0xff033076),
           accentColor: Color(0xFF88C7BC),
@@ -42,14 +51,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> _titles = <Widget>[
-    Text("Health Logbook"),
-    Text("Virtual Handshake"),
-    Text("Handshake List"),
-    Text("Create Permanent QR"),
-    Text("Reports"),
-  ];
-
   List<Widget> _widgetOptions = <Widget>[
     HealthLogbookScreen(),
     HandshakeScreen(),
@@ -66,9 +67,34 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var activevMenuPage = "";
+    switch(_selectedIndex) {
+      case 0: {
+        activevMenuPage = AppLocalizations.of(context).healthLogbookTitleLabel;
+        break;
+      }
+      case 1: {
+        activevMenuPage = AppLocalizations.of(context).virtualHandshakeTitleLabel;
+        break;
+      }
+      case 2: {
+        activevMenuPage = AppLocalizations.of(context).handshakeListTitleLabel;
+        break;
+      }
+      case 3: {
+        activevMenuPage = AppLocalizations.of(context).createQrCodeTitleLabel;
+        break;
+      }
+      case 4: {
+        activevMenuPage = AppLocalizations.of(context).reportsTitleLabel;
+        break;
+      }
+    }
+
     return Scaffold(
+
       appBar: AppBar(
-        title: _titles.elementAt(_selectedIndex),
+        title: Text(activevMenuPage),
         centerTitle: true,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
