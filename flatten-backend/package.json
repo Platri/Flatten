@@ -29,16 +29,20 @@
     "@nestjs/config": "^0.4.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.5.1",
     "@nestjs/typeorm": "^7.0.0",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.0-rc.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "start-server-webpack-plugin": "^2.2.5",
+    "swagger-ui-express": "^4.1.4",
+    "typeorm": "^0.2.24",
     "uuid": "^7.0.2",
     "webpack": "latest",
-    "webpack-node-externals": "latest",
-    "typeorm": "^0.2.24"
+    "webpack-node-externals": "latest"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
