@@ -78,6 +78,22 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Build Docker Image
+
+```bash
+# build docker image
+$ docker build -t flatten .
+```
+
+## Run Docker Container (local with mysql)
+If you run the container locally with the mysql-local.yml compose file. You have to rename the database host to servicename or containername.
+
+```bash
+# run docker container -- link to Postgres DB Container with same docker network
+# Mount env File for external application configuration
+$ docker run -d -it -p 5000:5000 --net docker_default -v${PWD}/.env:/home/node/app/.env sample-nest-postgres-docker:latest
+```
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
