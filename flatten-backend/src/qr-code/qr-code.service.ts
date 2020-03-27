@@ -35,7 +35,6 @@ export class QrCodeService {
 
     createQRCode(createQrCodeDTO: CreateQRCodeDTO): Promise<QRCode> {
         const qrCode = new QRCode();
-        qrCode.qrCode = createQrCodeDTO.qrCode;
         qrCode.name = createQrCodeDTO.name;
         return this.qrCodeRepository.save(createQrCodeDTO);
     }
