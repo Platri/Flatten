@@ -25,6 +25,7 @@ dependencies:
   image:
 
   # util
+  location: # https://pub.dev/packages/location
   qr_flutter: # https://pub.dev/packages/qr_flutter
   qr_code_scanner: # https://pub.dev/packages/qr_code_scanner
 
