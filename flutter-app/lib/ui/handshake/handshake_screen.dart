@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
+import 'package:flatten/services/auth.dart';
 import '../../localizations.dart';
 
 class HandshakeScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class _HandshakeScreenState extends State<HandshakeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context); //this gives the current logged in user
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -44,7 +46,13 @@ class _HandshakeScreenState extends State<HandshakeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  AppLocalizations.of(context).pvhtitel,
+                //earlier this was showing
+                // AppLocalizations.of(context).pvhtitel,
+                //this is changed temporarily to check user login:
+                "Prename: ${user.userData['preName']}\nName: ${user.userData['name']}\nZIP: ${user.userData['zip']}",
+                /*Later this can be changed to a unique is for every user, which is stored in the User class
+                and can be accessed though user.userData['uid']
+                */
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
