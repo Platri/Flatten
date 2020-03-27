@@ -26,13 +26,11 @@ dependencies:
 
   # util
   location: # https://pub.dev/packages/location
+  rxdart: ^0.23.1
   qr_flutter: # https://pub.dev/packages/qr_flutter
   qr_code_scanner: # https://pub.dev/packages/qr_code_scanner
 
 dev_dependencies:
-  #  flutter_test:
-  #    sdk: flutter
-
   flutter_launcher_icons: # https://pub.dev/packages/flutter_launcher_icons
   intl_translation: # https://pub.dev/packages/intl_translation
 
