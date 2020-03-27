@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
         const Locale("en"),
         const Locale("de"),
       ],
+
+      // TODO define textstyles here.
       theme: ThemeData(
           primaryColorDark: Color(0xff033076),
           accentColor: Color(0xFF88C7BC),
