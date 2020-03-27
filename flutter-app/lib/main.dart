@@ -4,10 +4,10 @@ import 'package:flatten/ui/handshake/handshake_screen.dart';
 import 'package:flatten/ui/logbook/health_logbook_screen.dart';
 import 'package:flatten/ui/reports/reports_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 import 'localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,13 +17,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FLATTEN',
+      onGenerateTitle: (context) {
+        return AppLocalizations.of(context).title;
+      },
       localizationsDelegates: [
         AppLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
       ],
-      supportedLocales: [Locale("de")],
+      supportedLocales: [
+        const Locale("en"),
+        const Locale("de"),
+      ],
       theme: ThemeData(
           primaryColorDark: Color(0xff033076),
           accentColor: Color(0xFF88C7BC),
@@ -67,34 +73,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var activevMenuPage = "";
-    switch(_selectedIndex) {
-      case 0: {
-        activevMenuPage = AppLocalizations.of(context).healthLogbookTitleLabel;
+    var activeMenuPage = "";
+    switch (_selectedIndex) {
+      case 0:
+        activeMenuPage = AppLocalizations.of(context).healthLogbookTitleLabel;
         break;
-      }
-      case 1: {
-        activevMenuPage = AppLocalizations.of(context).virtualHandshakeTitleLabel;
+      case 1:
+        activeMenuPage =
+            AppLocalizations.of(context).virtualHandshakeTitleLabel;
         break;
-      }
-      case 2: {
-        activevMenuPage = AppLocalizations.of(context).handshakeListTitleLabel;
+      case 2:
+        activeMenuPage = AppLocalizations.of(context).handshakeListTitleLabel;
         break;
-      }
-      case 3: {
-        activevMenuPage = AppLocalizations.of(context).createQrCodeTitleLabel;
+      case 3:
+        activeMenuPage = AppLocalizations.of(context).createQrCodeTitleLabel;
         break;
-      }
-      case 4: {
-        activevMenuPage = AppLocalizations.of(context).reportsTitleLabel;
+      case 4:
+        activeMenuPage = AppLocalizations.of(context).reportsTitleLabel;
         break;
-      }
     }
 
     return Scaffold(
-
       appBar: AppBar(
-        title: Text(activevMenuPage),
+        title: Text(activeMenuPage),
         centerTitle: true,
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
