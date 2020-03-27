@@ -21,7 +21,8 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
 				entitiesDir: 'src/entity',
 				migrationsDir: 'src/migration'
 			},
-			synchronize: false
+			synchronize: true,
+			autoLoadEntities: true,
 		};
 	}
 }
