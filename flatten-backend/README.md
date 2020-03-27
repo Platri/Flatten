@@ -95,7 +95,6 @@ POST /handshake/new/
 | Attribute        | Type   | Required | Value                             | Description               |
 |------------------|--------|----------|-----------------------------------|---------------------------|
 | `Content-Type`   | string | yes      | application/x-www-form-urlencoded | Content-Type for raw data |
-| `x-access-token` | string | yes      |                                   | JWT Access Token          |
 
 **Body** 
 
@@ -143,7 +142,6 @@ GET /handshake/all/:id
 | Attribute        | Type   | Required | Value                             | Description               |
 |------------------|--------|----------|-----------------------------------|---------------------------|
 | `Content-Type`   | string | yes      | application/x-www-form-urlencoded | Content-Type for raw data |
-| `x-access-token` | string | yes      |                                   | JWT Access Token          |
 
 **Body** 
 
