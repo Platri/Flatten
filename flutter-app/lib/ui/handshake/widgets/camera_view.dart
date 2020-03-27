@@ -1,3 +1,4 @@
+import 'package:flatten/bloc/scan_qr_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -7,9 +8,13 @@ class CameraView extends StatefulWidget {
 }
 
 class _CameraViewState extends State<CameraView> {
+	ScanQrBloc bloc;
 	final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-	var qrText = "";
-	QRViewController controller;
+
+	@override
+	void initState() {
+		bloc = ScanQrBloc();
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class _CameraViewState extends State<CameraView> {
 					flex: 5,
 					child: QRView(
 						key: qrKey,
-						onQRViewCreated: _onQRViewCreated,
+						onQRViewCreated: bloc.onQRViewCreated,
 					),
 				),
 				Padding(
@@ -34,18 +39,8 @@ class _CameraViewState extends State<CameraView> {
 		);
 	}
 
-	void _onQRViewCreated(QRViewController controller) {
-		this.controller = controller;
-		controller.scannedDataStream.listen((scanData) {
-			setState(() {
-				qrText = scanData;
-			});
-		});
-	}
-
 	@override
 	void dispose() {
-		controller?.dispose();
 		super.dispose();
 	}
 }
