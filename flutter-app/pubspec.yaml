@@ -26,6 +26,7 @@ dependencies:
   image:
 
   # util
+  http:
   location: # https://pub.dev/packages/location
   rxdart: ^0.23.1
   qr_flutter: # https://pub.dev/packages/qr_flutter
