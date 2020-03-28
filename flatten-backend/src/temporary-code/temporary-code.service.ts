@@ -2,25 +2,33 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {TemporaryCode} from "@src/entity/temporary-code.entity";
-import {TemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
+import {CreateTemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
+import {QrCodeService} from "@src/qr-code/qr-code.service";
 
 @Injectable()
 export class TemporaryCodeService {
 
     constructor(
         @InjectRepository(TemporaryCode)
-        private readonly repository: Repository<TemporaryCode>,
+        private readonly temporaryCodeRepository: Repository<TemporaryCode>,
+
+        private qrCodeService: QrCodeService
     ) {
     }
 
     async findAll(): Promise<TemporaryCode[]> {
-        return await this.repository.find();
+        return await this.temporaryCodeRepository.find();
     }
 
-    async createTemporaryCode(dto: TemporaryCodeDto): Promise<TemporaryCode> {
-        const temporaryCode: TemporaryCode = new TemporaryCode();
-        temporaryCode.shortCode = dto.shortCode;
-        return await this.repository.save(temporaryCode);
+    async deleteById(id: string): Promise<any> {
+        return await this.temporaryCodeRepository.delete(id);
+    }
+
+    public async createTemporaryCode(createTemporaryCodeDto: CreateTemporaryCodeDto): Promise<TemporaryCode> {
+        const temporaryCode = new TemporaryCode();
+        const qrCode = this.qrCodeService.findOne(createTemporaryCodeDto.qrCodeId);
+        temporaryCode.qrCode = await qrCode;
+        return this.temporaryCodeRepository.save(temporaryCode);
     }
 
 }

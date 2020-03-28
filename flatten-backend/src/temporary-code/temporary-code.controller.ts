@@ -1,23 +1,28 @@
 import {ApiTags} from '@nestjs/swagger';
-import {Body, Controller, Get, Post,} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post,} from '@nestjs/common';
 import {TemporaryCodeService} from "@src/temporary-code/temporary-code.service";
 import {TemporaryCode} from "@src/entity/temporary-code.entity";
-import {TemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
+import {CreateTemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
 
 @Controller('temporary-code')
 @ApiTags('temporary-code')
 export class TemporaryCodeController {
 
-    constructor(private readonly service: TemporaryCodeService) {
+    constructor(private readonly temporaryCodeService: TemporaryCodeService) {
     }
 
     @Get()
     async getAllTemporaryCodes(): Promise<TemporaryCode[]> {
-        return await this.service.findAll();
+        return await this.temporaryCodeService.findAll();
     }
 
     @Post()
-    async create(@Body() dto: TemporaryCodeDto): Promise<TemporaryCode> {
-        return await this.service.createTemporaryCode(dto);
+    async create(@Body() dto: CreateTemporaryCodeDto): Promise<TemporaryCode> {
+        return await this.temporaryCodeService.createTemporaryCode(dto);
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id): Promise<any> {
+        return await this.temporaryCodeService.deleteById(id);
     }
 }

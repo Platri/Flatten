@@ -1,4 +1,3 @@
-export class TemporaryCodeDto {
-    id: number;
-    shortCode: string;
+export class CreateTemporaryCodeDto {
+    qrCodeId: string;
 }

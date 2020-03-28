@@ -1,5 +1,15 @@
-import {PrimaryGeneratedColumn, Column, CreateDateColumn, Entity, Index, AfterInsert} from 'typeorm';
+import {
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    Entity,
+    Index,
+    AfterInsert,
+    OneToOne,
+    JoinColumn, BeforeInsert, EventSubscriber, EntitySubscriberInterface, InsertEvent
+} from 'typeorm';
 import {Max, Min} from "class-validator";
+import {QRCode} from "@src/entity/qr-code.entity";
 
 @Entity()
 export class TemporaryCode {
@@ -9,18 +19,18 @@ export class TemporaryCode {
     @Index({unique: true})
     @Min(8)
     @Max(8)
-    @Column({ type: 'varchar', length: 8})
+    @Column({ type: 'varchar', length: 8, default: 'EMPTYVA1', nullable: true})
     shortCode: string;
 
-    @CreateDateColumn({ type: 'timestamp', precision: null, default: () => 'CURRENT_TIMESTAMP' })
+
+    @Column({ type: 'timestamp', precision: null, default: () => 'CURRENT_TIMESTAMP' })
     createDateTime: Date;
 
     @Column({ type: 'timestamp', precision: null, default: () => 'CURRENT_TIMESTAMP' })
     validUntil: Date;
 
-    @AfterInsert()
-    async setValidUntil(): Promise<void> {
-        this.validUntil = new Date(this.validUntil.getTime() + (3 * 60000));
-    }
+    @OneToOne(type => QRCode)
+    @JoinColumn()
+    qrCode: QRCode;
 
 }
