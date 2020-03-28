@@ -23,4 +23,19 @@ export abstract class BaseEntity {
 
 	@Column({ type: 'varchar', length: 300, nullable: true })
 	internalComment: string | null;
+
+	@Column({ length: 500 })
+	name: string;
+
+	@Column('text')
+	description: string;
+
+	@Column()
+	filename: string;
+
+	@Column('int')
+	views: number;
+
+	@Column()
+	isPublished: boolean;
 }
