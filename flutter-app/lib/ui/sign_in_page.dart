@@ -1,11 +1,11 @@
+import 'package:flatten/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flatten/services/auth.dart';
-import 'sign_in_components/custom_raised_button.dart';
-import 'sign_in_components/validator.dart';
+
 import 'sign_in_components/constants.dart';
-import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'sign_in_components/custom_raised_button.dart';
 import 'sign_in_components/information_texts.dart';
+import 'sign_in_components/validator.dart';
 
 class SignInPage extends StatefulWidget with FeildValidator {
   @override
@@ -14,7 +14,9 @@ class SignInPage extends StatefulWidget with FeildValidator {
 
 class _SignInPageState extends State<SignInPage> {
   String get _preName => _preNameController.text;
+
   String get _name => _nameController.text;
+
   String get _zip => _zipController.text;
 
   final TextEditingController _preNameController = TextEditingController();
@@ -28,15 +30,17 @@ class _SignInPageState extends State<SignInPage> {
   bool _submitted = false;
 
   void _submit() {
-    ///this method signs in the user only if all the feilds are valid 
-    ///we dont have to add the sign in logic here, we have to do that in the Auth() 
+    ///this method signs in the user only if all the feilds are valid
+    ///we dont have to add the sign in logic here, we have to do that in the Auth()
     ///class in the 'services' directory
     setState(() {
       _submitted = true;
     });
-    if(widget.zipValidator.isValid(_zip) && widget.nameValidator.isValid(_name) && widget.preNameValidator.isValid(_preName)){
-    final Auth auth = Provider.of<Auth>(context, listen: false);
-    auth.signIn('some uid', _preName, _name, _zip);
+    if (widget.zipValidator.isValid(_zip) &&
+        widget.nameValidator.isValid(_name) &&
+        widget.preNameValidator.isValid(_preName)) {
+      final Auth auth = Provider.of<Auth>(context, listen: false);
+      auth.signIn('some uid', _preName, _name, _zip);
     }
   }
 
@@ -63,7 +67,10 @@ class _SignInPageState extends State<SignInPage> {
             ),
             CustomRaisedButton(
               color: Color(0xff408aff),
-              child: Text('Scan QR-Code', style: TextStyle(fontSize: 20),),
+              child: Text(
+                'Scan QR-Code',
+                style: TextStyle(fontSize: 20),
+              ),
               borderRadius: 50,
               onPressed: () {},
             ),
@@ -90,7 +97,10 @@ class _SignInPageState extends State<SignInPage> {
             ),
             CustomRaisedButton(
               color: Color(0xff408aff),
-              child: Text('Generate', style: TextStyle(fontSize: 20),),
+              child: Text(
+                'Generate',
+                style: TextStyle(fontSize: 20),
+              ),
               borderRadius: 50,
               onPressed: () {
                 _submit();
