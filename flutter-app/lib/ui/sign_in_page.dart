@@ -1,4 +1,3 @@
-import 'package:flatten/remote/flatten_api.dart';
 import 'package:flatten/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,9 +72,7 @@ class _SignInPageState extends State<SignInPage> {
                 style: TextStyle(fontSize: 20),
               ),
               borderRadius: 50,
-              onPressed: () {
-                FlattenApi().getQrCode();
-              },
+              onPressed: () {},
             ),
             Spacer(
               flex: 2,
