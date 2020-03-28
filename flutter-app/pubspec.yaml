@@ -21,6 +21,7 @@ dependencies:
   flutter_sticky_header: # https://pub.dev/packages/flutter_sticky_header
   line_awesome_icons:
   cupertino_icons:
+  provider: ^4.0.4
 
   image:
 

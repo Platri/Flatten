@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:flatten/ui/handshake/widgets/camera_view.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'widgets/qr_view.dart';
+import 'package:flatten/services/auth.dart';
 
 
 class HandshakeScreen extends StatelessWidget {
@@ -18,6 +19,7 @@ class HandshakeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context); //this gives the current logged in user
     return DefaultTabController(
       length: 2,
       child: Scaffold(
