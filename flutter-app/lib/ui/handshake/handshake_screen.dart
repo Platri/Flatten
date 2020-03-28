@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flatten/ui/handshake/widgets/camera_view.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'widgets/qr_view.dart';
 import 'package:flatten/services/auth.dart';
-import '../../localizations.dart';
 
-class HandshakeScreen extends StatefulWidget {
-  @override
-  _HandshakeScreenState createState() => _HandshakeScreenState();
-}
 
-class _HandshakeScreenState extends State<HandshakeScreen> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  var qrText = "";
-  QRViewController controller;
+class HandshakeScreen extends StatelessWidget {
+  final Icon qrIcon = Icon(
+    LineAwesomeIcons.qrcode,
+    color: Color(0xFF08A388),
+  );
+
+  final Icon cameraIcon = Icon(
+    LineAwesomeIcons.camera,
+    color: Color(0xFF08A388),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -26,92 +27,21 @@ class _HandshakeScreenState extends State<HandshakeScreen> {
           tabs: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                LineAwesomeIcons.qrcode,
-                color: Color(0xFF08A388),
-              ),
+              child: qrIcon,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                LineAwesomeIcons.camera,
-                color: Color(0xFF08A388),
-              ),
+              child: cameraIcon,
             ),
           ],
         ),
         body: TabBarView(
           children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                //earlier this was showing
-                // AppLocalizations.of(context).pvhtitel,
-                //this is changed temporarily to check user login:
-                "Prename: ${user.userData['preName']}\nName: ${user.userData['name']}\nZIP: ${user.userData['zip']}",
-                /*Later this can be changed to a unique is for every user, which is stored in the User class
-                and can be accessed though user.userData['uid']
-                */
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                      color: Color(0xFF08A388)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 48, right: 48),
-                  child: QrImage(
-                    data: "nkldsfkldsfdknflsnkldfs",
-                    foregroundColor: Color(0xFF08A388),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 32, right: 32),
-                  child: Text(
-                    "Your Encounter scans this Code to submit the encouter for both of you.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Color(0xff033076)),
-                  ),
-                )
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Expanded(
-                  flex: 5,
-                  child: QRView(
-                    key: qrKey,
-                    onQRViewCreated: _onQRViewCreated,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Text(
-                    "Scan QR-Code to submit encounter",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Color(0xff033076)),
-                  ),
-                )
-              ],
-            ),
+            QrCodeView(),
+            CameraView()
           ],
         ),
       ),
     );
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        qrText = scanData;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }
