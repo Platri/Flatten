@@ -1,6 +1,7 @@
 import {PrimaryGeneratedColumn, Column, CreateDateColumn, Entity} from 'typeorm';
 import {Status, UseCase} from "@src/shared/models";
 
+
 @Entity()
 export class QRCode {
     @PrimaryGeneratedColumn('uuid')
