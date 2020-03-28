@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flatten/ui/handshake/widgets/camera_view.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'widgets/qr_view.dart';
-import 'package:flatten/services/auth.dart';
+import 'package:flatten/bloc/bloc_provider.dart';
+import 'package:flatten/bloc/auth_bloc.dart';
+import 'handshake_info_screen.dart';
 
 
 class HandshakeScreen extends StatelessWidget {
@@ -19,27 +20,34 @@ class HandshakeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context); //this gives the current logged in user
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: TabBar(
-          tabs: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: qrIcon,
+    final user = BlocProvider.of<User>(context); //this gives the current logged in user
+    return SingleChildScrollView(
+          child: Container(
+        height: MediaQuery.of(context).size.height/1.2,
+        width: MediaQuery.of(context).size.width,
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: TabBar(
+              tabs: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: qrIcon,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: cameraIcon,
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: cameraIcon,
+             body:
+            TabBarView(
+              children: <Widget>[
+                QrCodeView(),
+                CameraView()
+              ],
             ),
-          ],
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            QrCodeView(),
-            CameraView()
-          ],
+          ),
         ),
       ),
     );

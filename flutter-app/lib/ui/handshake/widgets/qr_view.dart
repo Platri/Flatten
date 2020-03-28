@@ -1,7 +1,7 @@
+import 'package:flatten/bloc/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:flatten/services/auth.dart';
+import 'package:flatten/bloc/auth_bloc.dart';
 import '../../../localizations.dart';
 
 class QrCodeView extends StatelessWidget {
@@ -11,7 +11,7 @@ class QrCodeView extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-     final user = Provider.of<User>(context); //this gives the current logged in user
+     final user = BlocProvider.of<User>(context); //this gives the current logged in user
 		TextStyle titleStyle = TextStyle(
 			fontWeight: FontWeight.bold,
 			fontSize: 24,
