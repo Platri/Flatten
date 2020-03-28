@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
+import 'package:provider/provider.dart';
+import 'package:flatten/services/auth.dart';
 import '../../../localizations.dart';
 
 class QrCodeView extends StatelessWidget {
@@ -10,6 +11,7 @@ class QrCodeView extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
+     final user = Provider.of<User>(context); //this gives the current logged in user
 		TextStyle titleStyle = TextStyle(
 			fontWeight: FontWeight.bold,
 			fontSize: 24,
@@ -20,7 +22,13 @@ class QrCodeView extends StatelessWidget {
 			mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 			children: <Widget>[
 				Text(
-					AppLocalizations.of(context).pvhtitel,
+           //earlier this was showing
+                // AppLocalizations.of(context).pvhtitel,
+                //this is changed temporarily to check user login:
+                "Prename: ${user.userData['preName']}\nName: ${user.userData['name']}\nZIP: ${user.userData['zip']}",
+                /*Later this can be changed to a unique is for every user, which is stored in the User class
+                and can be accessed though user.userData['uid']
+                */
 					style: titleStyle
 				),
 				Padding(

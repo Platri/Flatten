@@ -1,6 +1,7 @@
 import 'package:flatten/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flatten/ui/create/create_qr_screen.dart';
+import 'encounters/encounter_list_screen.dart';
 import 'package:flatten/ui/handshake/handshake_screen.dart';
 import 'package:flatten/ui/logbook/health_logbook_screen.dart';
 import 'package:flatten/ui/reports/reports_screen.dart';
