@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           splashColor: Color(0xFF88C7BC),
           primaryTextTheme: TextTheme(
-              headline: TextStyle(
+              headline6: TextStyle(
                   color: Color(0xff033076), fontWeight: FontWeight.bold)),
           buttonTheme: ButtonThemeData(
             textTheme: ButtonTextTheme.primary,
