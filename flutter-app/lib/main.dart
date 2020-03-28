@@ -1,5 +1,5 @@
 import 'package:flatten/ui/create/create_qr_screen.dart';
-import 'package:flatten/ui/encounters/encrounter_list_screen.dart';
+import 'package:flatten/ui/encounters/encounter_list_screen.dart';
 import 'package:flatten/ui/handshake/handshake_screen.dart';
 import 'package:flatten/ui/logbook/health_logbook_screen.dart';
 import 'package:flatten/ui/reports/reports_screen.dart';
@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
         const Locale("en"),
         const Locale("de"),
       ],
+
+      // TODO define textstyles here.
       theme: ThemeData(
           primaryColorDark: Color(0xff033076),
           accentColor: Color(0xFF88C7BC),
