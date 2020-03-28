@@ -1,5 +1,11 @@
+import 'package:flatten/bloc/create_qr_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:line_awesome_icons/line_awesome_icons.dart';
+
+import './widgets/gps_section.dart';
+import './widgets/page_explanation_section.dart';
+import './widgets/purpose_picker_section.dart';
+import './widgets/information_section.dart';
+import './widgets/name_section.dart';
 
 class CreateQRScreen extends StatefulWidget {
   @override
@@ -7,108 +13,47 @@ class CreateQRScreen extends StatefulWidget {
 }
 
 class _CreateQRScreenState extends State<CreateQRScreen> {
-  SingingCharacter _character = SingingCharacter.lafayette;
+  CreateQrBloc bloc;
+
+  @override
+  void initState() {
+      bloc = CreateQrBloc();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Text(
-              "You can generate QR-Codes to e.g. print and put at doors/buildings. Everyone that enters and leaves the location scans the code so FLATTEN know to whom you had contact to.",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-          SizedBox(
-            width: double.infinity,
-            child: Text("Name:",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff033076))),
-          ),
-          TextField(
-            decoration: new InputDecoration(
-                border: new OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(10.0),
-                  ),
-                ),
-                hintMaxLines: 2,
-                hintText:
-                    "e.g. Supermarket Plaldi Nord\ne.g. workplace room 1, room 2"),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text("Use for:",
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            PageExplanationSection(),
+            NameSection(),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("Use for:",
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Radio(
-                value: SingingCharacter.lafayette,
-                groupValue: _character,
-                onChanged: (SingingCharacter value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
+                style: TextStyle(fontSize: 18, color: Color(0xff033076))
               ),
-              Text("company",
-                  style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-              Radio(
-                value: SingingCharacter.jefferson,
-                groupValue: _character,
-                onChanged: (SingingCharacter value) {
-                  setState(() {
-                    _character = value;
-                  });
-                },
+            ),
+            PurposeSection(bloc: bloc),
+            SizedBox(height: 8,),
+            GpsSection(),
+            AdditionalInformationSection(),
+            Center(
+              child: RaisedButton(
+                child: Text("Generate"),
+                onPressed: () {},
               ),
-              Text("private",
-                  style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-            ],
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text("Pick GPS-Position:",
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-          ),
-          Center(
-            child: Container(
-                margin: EdgeInsets.all(20),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(width: 2, color: Colors.black)),
-                child: Icon(LineAwesomeIcons.map_pin)),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: Text("Additional Information",
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 18, color: Color(0xff033076))),
-          ),
-          TextField(
-              decoration: new InputDecoration(
-                  border: new OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(10.0),
-                    ),
-                  ),
-                  hintMaxLines: 2)),
-          RaisedButton(
-            child: Text("Generate"),
-            onPressed: () {},
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
 
 enum SingingCharacter { lafayette, jefferson }
