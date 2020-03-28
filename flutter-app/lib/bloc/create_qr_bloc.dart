@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flatten/bloc/bloc_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
