@@ -1,11 +1,11 @@
-import { QRCode } from '@src/entity/qr-code.entity';
-import { Injectable } from '@nestjs/common';
-import { QrCodeInterface } from "./qr-code.interface";
-import { throwError } from "rxjs";
-import { v4 as uuidv4 } from 'uuid';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateQRCodeDTO } from '@src/shared/dtos/qr-code.dto';
+import {QRCode} from '@src/entity/qr-code.entity';
+import {Injectable} from '@nestjs/common';
+import {QrCodeInterface} from "./qr-code.interface";
+import {throwError} from "rxjs";
+import {v4 as uuidv4} from 'uuid';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Repository} from 'typeorm';
+import {CreateQRCodeDTO} from '@src/shared/dtos/qr-code.dto';
 
 @Injectable()
 export class QrCodeService {
@@ -14,10 +14,15 @@ export class QrCodeService {
     constructor(
         @InjectRepository(QRCode)
         private readonly qrCodeRepository: Repository<QRCode>,
-    ) { }
+    ) {
+    }
 
     public async findAll(): Promise<any[]> {
         return this.qrCodeRepository.find();
+    }
+
+    public async findOne(id: string): Promise<any> {
+        return this.qrCodeRepository.findOne(id);
     }
 
     getQRCode(id): QrCodeInterface {
