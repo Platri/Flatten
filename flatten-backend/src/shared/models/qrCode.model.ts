@@ -30,5 +30,4 @@ export enum Status {
     HEALTHY,
     SUSPECTED,
     INFECTED
-
 }

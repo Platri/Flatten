@@ -2,7 +2,7 @@ import {ApiTags} from '@nestjs/swagger';
 import {Body, Controller, Delete, Get, Param, Post,} from '@nestjs/common';
 import {TemporaryCodeService} from "@src/temporary-code/temporary-code.service";
 import {TemporaryCode} from "@src/entity/temporary-code.entity";
-import {CreateTemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
+import {CreateTemporaryCodeDto} from "@src/shared/dtos/create-temporary-code.dto";
 
 @Controller('temporary-code')
 @ApiTags('temporary-code')
