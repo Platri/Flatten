@@ -1,0 +1,25 @@
+name: Docker Image Flatten API
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./flatten-backend
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        repository: platri/flatten-api
+        tags: latest
+        path: ${{env.working-directory}}
