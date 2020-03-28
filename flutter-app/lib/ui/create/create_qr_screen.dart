@@ -17,6 +17,7 @@ class _CreateQRScreenState extends State<CreateQRScreen> {
 
   @override
   void initState() {
+    super.initState();
       bloc = CreateQrBloc();
   }
 

@@ -13,6 +13,7 @@ class _CameraViewState extends State<CameraView> {
 
 	@override
 	void initState() {
+		super.initState();
 		bloc = ScanQrBloc();
 	}
 
@@ -27,13 +28,30 @@ class _CameraViewState extends State<CameraView> {
 						onQRViewCreated: bloc.onQRViewCreated,
 					),
 				),
-				Padding(
-					padding: const EdgeInsets.all(24.0),
-					child: Text(
-						"Scan QR-Code to submit encounter",
-						textAlign: TextAlign.center,
-						style: TextStyle(fontSize: 18, color: Color(0xff033076)),
-					),
+				StreamBuilder<QRScannerState>(
+				  stream: bloc.outQRScannerState,
+				  builder: (context, snapshot) {
+				  	if (!snapshot.hasData)
+				  		return LimitedBox();
+
+				  	Map<QRScannerState, String> messageOfQRStatus = {
+						  QRScannerState.Scanning : "Scan QR-Code to submit encounter",
+						  QRScannerState.ScanSuccess : "QR code scanned succesfully",
+					  };
+				    return Padding(
+				      padding: const EdgeInsets.all(24.0),
+				      child: Text(
+				        messageOfQRStatus[snapshot.data],
+				        textAlign: TextAlign.center,
+				        style: TextStyle(
+					        fontSize: 18,
+					        color: snapshot.data == QRScannerState.Scanning
+					         ? Color(0xff033076)
+						       : Colors.green
+				        ),
+				      ),
+				    );
+				  }
 				)
 			],
 		);
