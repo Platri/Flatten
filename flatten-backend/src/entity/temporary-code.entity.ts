@@ -1,12 +1,10 @@
 import {
     PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
     Entity,
     Index,
-    AfterInsert,
     OneToOne,
-    JoinColumn, BeforeInsert, EventSubscriber, EntitySubscriberInterface, InsertEvent
+    JoinColumn
 } from 'typeorm';
 import {Max, Min} from "class-validator";
 import {QRCode} from "@src/entity/qr-code.entity";

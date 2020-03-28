@@ -9,7 +9,7 @@ export interface HealthLogbookEntry {
     id?: number;
 }
 
-enum Cough {
+export enum Cough {
     NO,
     BIT,
     OFTEN,
@@ -18,7 +18,7 @@ enum Cough {
     TERRIBLE
 }
 
-enum Headache {
+export enum Headache {
     NO,
     OK,
     BIT,

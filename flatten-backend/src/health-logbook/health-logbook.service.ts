@@ -1,35 +1,63 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
-import {HealthLogbookEntry, HealthLogbook} from "@src/health-logbook/healthLogbook.model";
-import { v4 as uuidv4 } from 'uuid';
+import {Cough, HealthLogbookEntry} from "@src/health-logbook/healthLogbook.model";
+import {CreateHealthLogbookEntryDto, GetHealthLogbookListDto} from "@src/shared/dtos/healthLogbook.dto";
+import {HealthLogbook} from "@src/entity/health-logbook.entity";
+import {InjectRepository} from "@nestjs/typeorm";
+import {Repository} from "typeorm";
+import {QrCodeService} from "@src/qr-code/qr-code.service";
+import {TemporaryCode} from "@src/entity/temporary-code.entity";
+import {PaginationDto} from "@src/shared/dtos/pagination.dto";
 
 
 @Injectable()
 export class HealthLogbookService {
     fakeHealthLogbookEntry: HealthLogbookEntry;
-    fakeHealthLogbook: HealthLogbook = {entries: []} ;
     error= false;
 
-    createLogbookEntry(entry): HealthLogbookEntry {
+    constructor(
+        @InjectRepository(HealthLogbook)
+        private readonly healthLogbookRepository: Repository<HealthLogbook>,
+
+        private qrCodeService: QrCodeService
+    ) {
+    }
+
+    async createLogbookEntry(createHealthLogbookEntryDto: CreateHealthLogbookEntryDto): Promise<HealthLogbookEntry> {
         // Post entry to repository
-        const logbook: HealthLogbookEntry = entry;
-        logbook.id = uuidv4();
-        this.fakeHealthLogbookEntry = logbook;
-        this.fakeHealthLogbook.entries.push(logbook);
-        return this.fakeHealthLogbookEntry;
+        const healthLogbookEntry = new HealthLogbook();
+        healthLogbookEntry.headache = createHealthLogbookEntryDto.headache;
+        healthLogbookEntry.bodyTemperature = createHealthLogbookEntryDto.bodyTemperature;
+        healthLogbookEntry.cough = createHealthLogbookEntryDto.cough;
+
+        const qrCode = this.qrCodeService.findOne(createHealthLogbookEntryDto.qrCodeId);
+
+        healthLogbookEntry.qrCode = await qrCode;
+        return this.healthLogbookRepository.save(healthLogbookEntry);
     }
 
-    getLogbookEntry(id: number): HealthLogbookEntry {
-        // Get entry from user from repository by id via jwt
-        let logBookEntry: HealthLogbookEntry = null;
-        this.fakeHealthLogbookEntry.id === id ? logBookEntry = this.fakeHealthLogbookEntry : this.error = true;
-        if(this.error) {
-            throw new NotFoundException('Entry not found.');
-        }
-        return logBookEntry;
+    async findAll(): Promise<HealthLogbookEntry[]> {
+        return await this.healthLogbookRepository.find();
     }
 
-    getLogbook(): HealthLogbook {
+    async getLogbook(qrCodeId: string, pageNumber: number, pageSize: number): Promise<PaginationDto<GetHealthLogbookListDto>> {
         // Get healthLogbook of user from repository via jwt
-        return this.fakeHealthLogbook;
+        console.log(qrCodeId);
+        console.log(pageSize);
+
+        const take = pageSize || 10;
+        const skip = pageNumber * 10 || 0;
+        const keyword = qrCodeId;
+
+        console.log(skip);
+
+        const [result, total] = await this.healthLogbookRepository.findAndCount(
+            {
+                where: { where: { keyword } },
+                take: take,
+                skip: skip
+            });
+
+        const paginationData: PaginationDto<GetHealthLogbookListDto> = {data: result, count: total, limit: take, page: pageNumber};
+            return paginationData;
     }
 }
