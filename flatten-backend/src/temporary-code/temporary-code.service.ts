@@ -20,8 +20,8 @@ export class TemporaryCodeService {
         return await this.temporaryCodeRepository.find();
     }
 
-    async deleteById(id: string): Promise<any> {
-        return await this.temporaryCodeRepository.delete(id);
+    async deleteById(id: string): Promise<void> {
+        await this.temporaryCodeRepository.delete(id);
     }
 
     public async createTemporaryCode(createTemporaryCodeDto: CreateTemporaryCodeDto): Promise<TemporaryCode> {
