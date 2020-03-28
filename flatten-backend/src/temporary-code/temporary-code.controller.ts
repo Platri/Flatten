@@ -22,7 +22,7 @@ export class TemporaryCodeController {
     }
 
     @Delete(':id')
-    async delete(@Param('id') id): Promise<any> {
+    async delete(@Param('id') id: string): Promise<any> {
         return await this.temporaryCodeService.deleteById(id);
     }
 }
