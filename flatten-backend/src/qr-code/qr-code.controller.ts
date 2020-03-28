@@ -8,7 +8,7 @@ import {
   Body,
 } from '@nestjs/common';
 import { QrCodeService } from './qr-code.service';
-import { CreateQRCodeDTO } from '@src/shared/dtos/qr-code.dto';
+import { CreateQRCodeDTO } from '@src/shared/dtos/create-qr-code.dto';
 import { QRCode } from '@src/entity/qr-code.entity';
 
 @Controller('qr-code')

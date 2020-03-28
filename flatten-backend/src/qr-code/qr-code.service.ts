@@ -5,7 +5,7 @@ import {throwError} from "rxjs";
 import {v4 as uuidv4} from 'uuid';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import {CreateQRCodeDTO} from '@src/shared/dtos/qr-code.dto';
+import {CreateQRCodeDTO} from '@src/shared/dtos/create-qr-code.dto';
 
 @Injectable()
 export class QrCodeService {
