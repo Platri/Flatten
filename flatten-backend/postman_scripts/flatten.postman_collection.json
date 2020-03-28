@@ -24,12 +24,21 @@
 			"response": []
 		},
 		{
-			"name": "[QR-Code] GetScan",
+			"name": "[QR-Code] GetAll",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "localhost:3000/flatten/qr-code/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"qr-code",
+						""
+					]
 				}
 			},
 			"response": []
@@ -81,6 +90,74 @@
 					"port": "3000",
 					"path": [
 						"health-logbook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qrCodeId\": \"026ca725-dd02-459e-93a4-444d7bf1a455\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/flatten/temporary-code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"temporary-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qrCodeId\": \"026ca725-dd02-459e-93a4-444d7bf1a455\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/flatten/temporary-code/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"temporary-code",
+						"3"
 					]
 				}
 			},
