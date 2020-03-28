@@ -24,35 +24,49 @@
 			"response": []
 		},
 		{
-			"name": "[QR-Code] GetScan",
+			"name": "[QR-Code] GetAll",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "[Health-Logbook] GetEntry",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/health-logbook/?id=11f473de-57a2-4004-a924-b05a3355a10e",
+					"raw": "localhost:3000/flatten/qr-code/",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"health-logbook",
+						"flatten",
+						"qr-code",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Health-Logbook] GetLogbook from QR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/flatten/health-logbook/b7a5c3ef-7a2d-4740-8def-b2f86108bacb?page=0&pageSize=5",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"health-logbook",
+						"b7a5c3ef-7a2d-4740-8def-b2f86108bacb"
 					],
 					"query": [
 						{
-							"key": "id",
-							"value": "11f473de-57a2-4004-a924-b05a3355a10e"
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "5"
 						}
 					]
 				}
@@ -60,7 +74,27 @@
 			"response": []
 		},
 		{
-			"name": "[Health-Logbook] Create",
+			"name": "[Health-Logbook] GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/flatten/health-logbook/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"health-logbook",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Health-Logbook] Create Entry",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -74,13 +108,90 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/health-logbook",
+					"raw": "localhost:3000/flatten/health-logbook",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"flatten",
 						"health-logbook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/flatten/temporary-code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"temporary-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qrCodeId\": \"4dcee453-8750-4fc4-8fe7-5f1ec7bb38ad\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/flatten/temporary-code",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"temporary-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Temporary-Code] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qrCodeId\": \"026ca725-dd02-459e-93a4-444d7bf1a455\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/flatten/temporary-code/15",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"flatten",
+						"temporary-code",
+						"15"
 					]
 				}
 			},

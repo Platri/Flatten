@@ -2,32 +2,30 @@ import { ApiTags } from '@nestjs/swagger';
 import {
   Controller,
   Get,
-  NotFoundException,
   Post,
-  Query,
+  Body, Delete, Param,
 } from '@nestjs/common';
 import { QrCodeService } from './qr-code.service';
-import { QrCodeInterface } from './qr-code.interface';
+import { CreateQRCodeDTO } from '@src/shared/dtos/create-qr-code.dto';
+import { QRCode } from '@src/entity/qr-code.entity';
 
 @Controller('qr-code')
 @ApiTags('qr-code')
 export class QrCodeController {
-  constructor(private readonly qrCodeService: QrCodeService) {}
+  constructor(private readonly qrCodeService: QrCodeService) { }
 
   @Get()
-  getScan(@Query('id') id) {
-    /*
-        QR Code ID has an min and max length of 16 characters.
-         */
-    if (id.length === 36) {
-      return this.qrCodeService.getQRCode(id);
-    } else {
-      throw new NotFoundException('Scanned QR-Code is incorrect.');
-    }
+  getAll() {
+    return this.qrCodeService.findAll();
+  }
+
+  @Get(':id')
+  async getOne(@Param('id') id: string): Promise<any> {
+    return await this.qrCodeService.findOne(id);
   }
 
   @Post()
-  create(): QrCodeInterface {
-    return this.qrCodeService.createQRCode();
+  create(@Body() createQRCodeDTO: CreateQRCodeDTO): Promise<QRCode> {
+    return this.qrCodeService.create(createQRCodeDTO);
   }
 }

@@ -21,7 +21,13 @@ export interface TemporaryQR extends QR {
     x: boolean;
 }
 
-enum UseCase {
+export enum UseCase {
     COMPANY,
     PRIVATE
+}
+
+export enum Status {
+    HEALTHY,
+    SUSPECTED,
+    INFECTED
 }

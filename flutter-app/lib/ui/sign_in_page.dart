@@ -13,7 +13,9 @@ class SignInPage extends StatefulWidget with FeildValidator {
 
 class _SignInPageState extends State<SignInPage> {
   String get _preName => _preNameController.text;
+
   String get _name => _nameController.text;
+
   String get _zip => _zipController.text;
 
   final TextEditingController _preNameController = TextEditingController();
