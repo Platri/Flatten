@@ -22,6 +22,5 @@ export class CreateQRCodeDTO {
     @ApiProperty({
         description: 'description : field is enum Status.  ["HEALTHY", "SUSPECTED", "INFECTED"]'
     })
-    @ApiProperty()
     status: Status;
 }
