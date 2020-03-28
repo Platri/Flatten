@@ -26,7 +26,7 @@ export class TemporaryCodeService {
 
     public async createTemporaryCode(createTemporaryCodeDto: CreateTemporaryCodeDto): Promise<TemporaryCode> {
         const temporaryCode = new TemporaryCode();
-        const qrCode = this.qrCodeService.findOne(createTemporaryCodeDto.shortCode);
+        const qrCode = this.qrCodeService.findOne(createTemporaryCodeDto.qrCodeId);
         temporaryCode.qrCode = await qrCode;
         return this.temporaryCodeRepository.save(temporaryCode);
     }
