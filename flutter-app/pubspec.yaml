@@ -21,8 +21,6 @@ dependencies:
   flutter_sticky_header: # https://pub.dev/packages/flutter_sticky_header
   line_awesome_icons:
   cupertino_icons:
-  provider: ^4.0.4
-
   image:
 
   # util
@@ -53,8 +51,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - icon/app_icon.png
+  assets:
+    - assets/icon/app_icon.png
+    - assets/house.png
+    - assets/person.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

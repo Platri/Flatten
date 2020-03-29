@@ -1,11 +1,10 @@
-import 'package:flatten/services/auth.dart';
+import 'package:flatten/bloc/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'sign_in_components/constants.dart';
 import 'sign_in_components/custom_raised_button.dart';
-import 'sign_in_components/information_texts.dart';
 import 'sign_in_components/validator.dart';
+import 'sign_in_components/constants.dart';
+import 'sign_in_components/information_texts.dart';
+import 'package:flatten/bloc/auth_bloc.dart';
 
 class SignInPage extends StatefulWidget with FeildValidator {
   @override
@@ -39,14 +38,14 @@ class _SignInPageState extends State<SignInPage> {
     if (widget.zipValidator.isValid(_zip) &&
         widget.nameValidator.isValid(_name) &&
         widget.preNameValidator.isValid(_preName)) {
-      final Auth auth = Provider.of<Auth>(context, listen: false);
+      final Auth auth = BlocProvider.of<Auth>(context);
       auth.signIn('some uid', _preName, _name, _zip);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Auth auth = Provider.of<Auth>(context);
+    final Auth auth = BlocProvider.of<Auth>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
