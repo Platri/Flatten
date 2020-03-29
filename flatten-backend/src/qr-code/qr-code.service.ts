@@ -3,7 +3,7 @@ import {Injectable} from '@nestjs/common';
 import {QrCodeInterface} from "./qr-code.interface";
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import {CreateQRCodeDTO} from '@src/shared/dtos/create-qr-code.dto';
+import {CreateQRCodeDTO} from '@src/shared/dtos/qr-code.dto';
 
 @Injectable()
 export class QrCodeService {

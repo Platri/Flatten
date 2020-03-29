@@ -13,17 +13,19 @@ export class HealthLogbookController {
   constructor(private healthLogbookService: HealthLogbookService) {}
 
   @Get(':qrId')
+  @ApiResponse({status: 200, description: 'The resource has been successfuly returned.', type: ResponseHealthLogbookDTO})
   async getLogbook(@Param('qrId') qrId: string, @Query('page') page = 0,  @Query('pageSize') pageSize = 0  ): Promise<PaginationDto<GetHealthLogbookListDto>> {
     return await this.healthLogbookService.getLogbook(qrId, page, pageSize);
   }
 
   @Get()
-  @ApiResponse({status: 200, description: 'The found record', type: ResponseHealthLogbookDTO})
+  @ApiResponse({status: 200, description: 'The resource list has been successfuly created.', type: ResponseHealthLogbookDTO})
   async getAll(): Promise<HealthLogbookEntry[]> {
     return await this.healthLogbookService.findAll();
   }
 
   @Post()
+  @ApiResponse({status: 201, description: 'The resource list has been successfuly created.'})
   async createLogbookEntry(
     @Body() dto: CreateHealthLogbookEntryDto,
     ): Promise<HealthLogbookEntry> {

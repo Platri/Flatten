@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {TemporaryCode} from "@src/entity/temporary-code.entity";
-import {CreateTemporaryCodeDto} from "@src/shared/dtos/create-temporary-code.dto";
+import {CreateTemporaryCodeDto} from "@src/shared/dtos/temporary-code.dto";
 import {QrCodeService} from "@src/qr-code/qr-code.service";
 
 @Injectable()
