@@ -1,19 +1,14 @@
 import { ResponseQRCodeDto } from './../shared/dtos/qr-code.dto';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
-import {
-  Controller,
-  Get,
-  Post,
-  Body, Delete, Param,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { QrCodeService } from './qr-code.service';
 import { CreateQRCodeDTO } from '@src/shared/dtos/qr-code.dto';
 import { QRCode } from '@src/entity/qr-code.entity';
 
-@Controller('qr-code')
-@ApiTags('qr-code')
+@Controller('qr-codes')
+@ApiTags('qr-codes')
 export class QrCodeController {
-  constructor(private readonly qrCodeService: QrCodeService) { }
+  constructor(private readonly qrCodeService: QrCodeService) {}
 
   @Get()
   @ApiResponse({status: 200, description: 'The resource list has been successfuly returned.', type: ResponseQRCodeDto})
