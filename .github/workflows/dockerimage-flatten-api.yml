@@ -29,5 +29,6 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
           docker-compose -f /app/compose/docker-compose.yml down
+          docker-compose -f /app/compose/docker-compose.yml pull
           docker-compose -f /app/compose/docker-compose.yml up -d
           docker images | grep none | awk '{ print $3; }' | xargs docker rmi
