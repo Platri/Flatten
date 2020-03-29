@@ -1,3 +1,4 @@
+import 'package:flatten/bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flatten/ui/handshake/widgets/camera_view.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
@@ -20,7 +21,7 @@ class HandshakeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = BlocProvider.of<User>(context); //this gives the current logged in user
+    final user = BlocProvider.of<User_Bloc>(context); //this gives the current logged in user
     return SingleChildScrollView(
           child: Container(
         height: MediaQuery.of(context).size.height/1.2,

@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 
 class QR_Code_For_Add {
   String name;
-  var useCase;
+  int useCase;
   String gpsPosition;
   String additionalInformation;
-  String active;
-  String status;
+  bool active;
+  int status;
 
   QR_Code_For_Add({
     @required this.name,

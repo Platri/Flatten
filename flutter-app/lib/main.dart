@@ -16,8 +16,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<Auth>(
-        bloc: Auth(),
+    return BlocProvider<Auth_Bloc>(
+        bloc: Auth_Bloc(),
           child:  BlocProvider<HS_Info_Bloc>(
             bloc: HS_Info_Bloc(),
                       child: MaterialApp(
