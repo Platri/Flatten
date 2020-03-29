@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  build_and_deploy:
 
     runs-on: ubuntu-latest
     env:
@@ -27,7 +27,6 @@ jobs:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
-        port: ${{ secrets.PORT }}
         script: |
           docker-compose -f /app/compose/docker-compose.yml down
           docker-compose -f /app/compose/docker-compose.yml up -d
