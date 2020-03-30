@@ -1,8 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import {TemporaryCodeSubscriber} from "@src/subscriber/temporary-code.subscriber";
-
+import { TemporaryCodeSubscriber } from '@src/subscriber/temporary-code.subscriber';
 
 @Injectable()
 export class DatabaseConfigService implements TypeOrmOptionsFactory {
@@ -17,7 +16,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
 			password: this.configService.get<string>('TYPEORM_PASSWORD'),
 			database: this.configService.get<string>('TYPEORM_DATABASE'),
 			entities: [ __dirname + '/**/*.entity{.ts,.js}' ],
-			subscribers: [TemporaryCodeSubscriber],
+			subscribers: [ TemporaryCodeSubscriber ],
 			migrations: [ __dirname + '/migration/**/*{.ts,.js}' ],
 			migrationsTableName: 'migration',
 			cli: {
@@ -26,6 +25,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
 			},
 			synchronize: true,
 			autoLoadEntities: true,
+			keepConnectionAlive: true
 		};
 	}
 }

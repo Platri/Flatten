@@ -9,6 +9,7 @@ services:
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'root'
+      TZ: 'Europe/Berlin'
     ports:
       - 3306:3306
     volumes:

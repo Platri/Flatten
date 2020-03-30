@@ -1,6 +1,9 @@
-export interface PaginationDto<T> {
-  readonly data: T[];
-  readonly count: number;
-  readonly limit: number;
-  readonly page: number;
+import { ApiProperty } from '@nestjs/swagger';
+export class PaginationDto<T> {
+	@ApiProperty()
+	readonly count: number;
+	@ApiProperty()
+	readonly limit: number;
+	@ApiProperty()
+	readonly page: number;
 }
