@@ -1,4 +1,5 @@
 import 'package:flatten/bloc/bloc_provider.dart';
+import 'package:flatten/bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flatten/bloc/auth_bloc.dart';
@@ -11,7 +12,7 @@ class QrCodeView extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-     final user = BlocProvider.of<User>(context); //this gives the current logged in user
+     final user = BlocProvider.of<User_Bloc>(context); //this gives the current logged in user
 		TextStyle titleStyle = TextStyle(
 			fontWeight: FontWeight.bold,
 			fontSize: 24,
@@ -25,7 +26,7 @@ class QrCodeView extends StatelessWidget {
            //earlier this was showing
                 // AppLocalizations.of(context).pvhtitel,
                 //this is changed temporarily to check user login:
-                "Prename: ${user.userData['preName']}\nName: ${user.userData['name']}\nZIP: ${user.userData['zip']}",
+                "uid: ${user.userData['uid']}\nName: ${user.userData['name']}\nZIP: ${user.userData['zip']}",
                 /*Later this can be changed to a unique is for every user, which is stored in the User class
                 and can be accessed though user.userData['uid']
                 */
@@ -34,7 +35,7 @@ class QrCodeView extends StatelessWidget {
 				Padding(
 					padding: const EdgeInsets.only(left: 48, right: 48),
 					child: QrImage(
-						data: "nkldsfkldsfdknflsnkldfs",
+						data: user.userData['uid'],
 						foregroundColor: Color(0xFF08A388),
 					),
 				),

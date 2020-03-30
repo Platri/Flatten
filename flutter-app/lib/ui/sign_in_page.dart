@@ -5,6 +5,9 @@ import 'sign_in_components/validator.dart';
 import 'sign_in_components/constants.dart';
 import 'sign_in_components/information_texts.dart';
 import 'package:flatten/bloc/auth_bloc.dart';
+import 'package:flatten/services/qr_code_service.dart';
+import 'package:flatten/models/qr_code_add.dart';
+
 
 class SignInPage extends StatefulWidget with FeildValidator {
   @override
@@ -12,6 +15,7 @@ class SignInPage extends StatefulWidget with FeildValidator {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
   String get _preName => _preNameController.text;
 
   String get _name => _nameController.text;
@@ -28,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
 
   bool _submitted = false;
 
-  void _submit() {
+  void _submit() async {
     ///this method signs in the user only if all the feilds are valid
     ///we dont have to add the sign in logic here, we have to do that in the Auth()
     ///class in the 'services' directory
@@ -38,102 +42,108 @@ class _SignInPageState extends State<SignInPage> {
     if (widget.zipValidator.isValid(_zip) &&
         widget.nameValidator.isValid(_name) &&
         widget.preNameValidator.isValid(_preName)) {
-      final Auth auth = BlocProvider.of<Auth>(context);
-      auth.signIn('some uid', _preName, _name, _zip);
+       final Auth_Bloc auth = BlocProvider.of<Auth_Bloc>(context);
+       auth.signIn(_preName, _name, _zip);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Auth auth = BlocProvider.of<Auth>(context);
-    return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Color(0xFF88c7bc),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Spacer(
-              flex: 3,
-            ),
-            informationText(
-                'Scan your QR-Code which you have received by post', 250),
-            Spacer(
-              flex: 1,
-            ),
-            CustomRaisedButton(
-              color: Color(0xff408aff),
-              child: Text(
-                'Scan QR-Code',
-                style: TextStyle(fontSize: 20),
+    final Auth_Bloc auth = BlocProvider.of<Auth_Bloc>(context);
+    return StreamBuilder(
+        stream: auth.isAuthenticationStream,
+        initialData: AuthState(errorOccured: false,inProgress: false),
+        builder: (context, snapshot) => snapshot.data.inProgress == true && snapshot.data.errorOccured == false? 
+        Scaffold(body: Center(child: CircularProgressIndicator(),),)
+        : Scaffold(
+          body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Color(0xFF88c7bc),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Spacer(
+                flex: 3,
               ),
-              borderRadius: 50,
-              onPressed: () {},
-            ),
-            Spacer(
-              flex: 2,
-            ),
-            informationText(
-                'You haven\'t received any post yer, or lost it?\nNo problem. Generate your new code here:',
-                320),
-            Spacer(
-              flex: 1,
-            ),
-            SizedBox(width: 300, height: 80, child: _buildPreNameTextFeild()),
-            Spacer(
-              flex: 1,
-            ),
-            SizedBox(width: 300, height: 80, child: _buildnameTextFeild()),
-            Spacer(
-              flex: 1,
-            ),
-            SizedBox(width: 300, height: 80, child: _buildZipTextFeild()),
-            Spacer(
-              flex: 1,
-            ),
-            CustomRaisedButton(
-              color: Color(0xff408aff),
-              child: Text(
-                'Generate',
-                style: TextStyle(fontSize: 20),
+              informationText(
+                  'Scan your QR-Code which you have received by post', 250),
+              Spacer(
+                flex: 1,
               ),
-              borderRadius: 50,
-              onPressed: () {
-                _submit();
-              },
-            ),
-            Spacer(
-              flex: 2,
-            ),
-            SizedBox(
-              width: 300,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: informationText(
-                        'What about people who do not have a smartphone', 200),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.help,
-                      size: 50,
-                      color: Colors.white,
+              CustomRaisedButton(
+                color: Color(0xff408aff),
+                child: Text(
+                  'Scan QR-Code',
+                  style: TextStyle(fontSize: 20),
+                ),
+                borderRadius: 50,
+                onPressed: () {},
+              ),
+              Spacer(
+                flex: 2,
+              ),
+              informationText(
+                  'You haven\'t received any post yer, or lost it?\nNo problem. Generate your new code here:',
+                  320),
+              Spacer(
+                flex: 1,
+              ),
+              SizedBox(width: 300, height: 80, child: _buildPreNameTextFeild()),
+              Spacer(
+                flex: 1,
+              ),
+              SizedBox(width: 300, height: 80, child: _buildnameTextFeild()),
+              Spacer(
+                flex: 1,
+              ),
+              SizedBox(width: 300, height: 80, child: _buildZipTextFeild()),
+              Spacer(
+                flex: 1,
+              ),
+              CustomRaisedButton(
+                color: Color(0xff408aff),
+                child: Text(
+                  'Generate',
+                  style: TextStyle(fontSize: 20),
+                ),
+                borderRadius: 50,
+                onPressed: () {
+                  _submit();
+                },
+              ),
+              Spacer(
+                flex: 2,
+              ),
+              SizedBox(
+                width: 300,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: informationText(
+                          'What about people who do not have a smartphone', 200),
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                    IconButton(
+                      icon: Icon(
+                        Icons.help,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Spacer(
-              flex: 1,
-            ),
-          ],
+              Spacer(
+                flex: 1,
+              ),
+            ],
+          ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 
   TextField _buildZipTextFeild() {

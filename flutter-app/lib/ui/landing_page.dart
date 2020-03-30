@@ -1,5 +1,6 @@
 import 'package:flatten/bloc/bloc_provider.dart';
 import 'package:flatten/bloc/hs_info_block.dart';
+import 'package:flatten/bloc/user_bloc.dart';
 import 'home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flatten/bloc/auth_bloc.dart';
@@ -9,7 +10,7 @@ import 'package:flatten/ui/sign_in_page.dart';
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Auth auth = BlocProvider.of<Auth>(context);
+    final Auth_Bloc auth = BlocProvider.of<Auth_Bloc>(context);
     return StreamBuilder(
       stream: auth.userStream,
       initialData: null,
@@ -17,7 +18,7 @@ class LandingPage extends StatelessWidget {
       //  this can be used to show a progress indicator when we authenticate from database,
       //  we can un-comment this.
       //  if(snapshot.connectionState == ConnectionState.active){
-          User user = snapshot.data;
+          User_Bloc user = snapshot.data;
           if(user == null){
             return SignInPage();
           }

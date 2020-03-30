@@ -1,5 +1,6 @@
 import 'package:flatten/bloc/auth_bloc.dart';
 import 'package:flatten/bloc/bloc_provider.dart';
+import 'package:flatten/bloc/user_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flatten/ui/create/create_qr_screen.dart';
 import 'encounters/encounter_list_screen.dart';
@@ -12,7 +13,7 @@ import 'package:flatten/ui/handshake/handshake_decider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({@required this.user});
-  User user;
+  User_Bloc user;
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         break;
     }
 
-    return BlocProvider<User>(
+    return BlocProvider<User_Bloc>(
       bloc: widget.user,
           child: Scaffold(
         appBar: AppBar(
