@@ -3,6 +3,7 @@ name: Docker Image Flatten API
 on:
   push:
     branches: [ master ]
+    paths: 'flatten-backend/**'
 
 jobs:
 
