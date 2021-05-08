@@ -39,7 +39,7 @@
     "rxjs": "^6.5.4",
     "start-server-webpack-plugin": "^2.2.5",
     "swagger-ui-express": "^4.1.4",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4",
